@@ -42,7 +42,12 @@ public final class GuessNumber {
 
 		hmServerNumber = new HashMap<String, Integer>();
 		for (int i = 0; i < numberCount; i++) {
-			String number = String.valueOf(serverNumber.charAt(i));
+			char ch = serverNumber.charAt(i);
+			if (ch < '0' || ch > '9') {
+				throw new Exception("The \"" + ch + "\" IS NOT a number!");
+			}
+
+			String number = String.valueOf(ch);
 			if (hmServerNumber.containsKey(number)) {
 				throw new Exception("The number " + number + " is repeated!");
 			}
@@ -64,7 +69,12 @@ public final class GuessNumber {
 
 		HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
 		for (int i = 0; i < numberCount; i++) {
-			String number = String.valueOf(serverNumber.charAt(i));
+			char ch = clientNumber.charAt(i);
+			if (ch < '0' || ch > '9') {
+				throw new Exception("The \"" + ch + "\" IS NOT a number!");
+			}
+
+			String number = String.valueOf(ch);
 			if (hashMap.containsKey(number)) {
 				throw new Exception("The number " + number + " is repeated!");
 			}
@@ -80,7 +90,8 @@ public final class GuessNumber {
 			if (hmServerNumber.containsKey(number)) {
 				if (hmServerNumber.get(number) == i) {
 					countA++;
-				} else {
+				}
+				else {
 					countB++;
 				}
 			}
@@ -91,7 +102,6 @@ public final class GuessNumber {
 
 	public static void main(String[] args) {
 		int count = 0;
-		boolean goal = false;
 		GuessNumber guessNumber = new GuessNumber();
 
 		while (count < tryCount) {
@@ -102,24 +112,22 @@ public final class GuessNumber {
 				String clientNumber = reader.readLine();
 
 				String result = guessNumber.validate(clientNumber);
-				System.out.println(result);
+				System.out.println(clientNumber + " ==> " + result);
 
 				if (result.equals("4A0B")) {
-					goal = true;
-					System.out.println("Good job!");
-					break;
+					System.out.println("Congratulations");
+					System.exit(0);
 				}
 
 				count++;
-			} catch (Exception ex) {
-				ex.printStackTrace();
+			}
+			catch (Exception ex) {
+				System.out.println(ex.getMessage());
 			}
 
 			System.out.println();
 		}
 
-		if (!goal) {
-			System.out.println("Bad job! The answer is: " + guessNumber.getServerNumber());
-		}
+		System.out.println("Game Over!\nThe right answer is: " + guessNumber.getServerNumber());
 	}
 }
