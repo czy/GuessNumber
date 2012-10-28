@@ -64,7 +64,7 @@ public final class GuessNumber {
 
 		int countA = 0;
 		int countB = 0;
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < numberCount; i++) {
 			String number = String.valueOf(clientNumber.charAt(i));
 
 			if (hashMap.containsKey(number)) {
