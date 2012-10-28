@@ -1,4 +1,4 @@
-package cn.beihangsoft.game.guessnumber;
+package cn.beihangsoft.game;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -115,7 +115,7 @@ public final class GuessNumber {
 				System.out.println(clientNumber + " ==> " + result);
 
 				if (result.equals("4A0B")) {
-					System.out.println("Congratulations");
+					System.out.println("\nCongratulations!");
 					System.exit(0);
 				}
 
@@ -126,6 +126,6 @@ public final class GuessNumber {
 			}
 		}
 
-		System.out.println("Game Over!\nThe right answer is: " + guessNumber.getServerNumber());
+		System.out.println("\nGame Over!\nThe right answer is: " + guessNumber.getServerNumber());
 	}
 }

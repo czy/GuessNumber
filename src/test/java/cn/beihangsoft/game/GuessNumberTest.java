@@ -1,4 +1,4 @@
-package cn.beihangsoft.game.guessnumber;
+package cn.beihangsoft.game;
 
 import static junit.framework.Assert.*;
 import org.junit.Test;
