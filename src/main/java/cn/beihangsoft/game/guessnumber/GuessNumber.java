@@ -20,7 +20,7 @@ public final class GuessNumber {
 		while (hashMap.size() < numberCount) {
 			String number = Integer.toString((int)(Math.random() * 10));
 			if (!hashMap.containsKey(number)) {
-				hashMap.put(number, Integer.valueOf(hashMap.size()));
+				hashMap.put(number, hashMap.size());
 				serverNumber += number;
 			}
 		}
@@ -47,7 +47,7 @@ public final class GuessNumber {
 				throw new Exception("The number " + number + " is repeated!");
 			}
 
-			hashMap.put(number, Integer.valueOf(hashMap.size()));
+			hashMap.put(number, hashMap.size());
 		}
 
 		this.serverNumber = serverNumber;
@@ -68,7 +68,7 @@ public final class GuessNumber {
 			String number = String.valueOf(clientNumber.charAt(i));
 
 			if (hashMap.containsKey(number)) {
-				if (((Integer)hashMap.get(number)).intValue() == i) {
+				if (hashMap.get(number) == i) {
 					countA++;
 				} else {
 					countB++;
