@@ -124,8 +124,6 @@ public final class GuessNumber {
 			catch (Exception ex) {
 				System.out.println(ex.getMessage());
 			}
-
-			System.out.println();
 		}
 
 		System.out.println("Game Over!\nThe right answer is: " + guessNumber.getServerNumber());
