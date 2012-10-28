@@ -51,7 +51,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>cn.beihangsoft.game.guessnumber.GuessNumber</mainClass>
+							<mainClass>cn.beihangsoft.game.GuessNumber</mainClass>
 						</manifest>
 					</archive>
 					<outputDirectory>${project.build.directory}/dist</outputDirectory>
