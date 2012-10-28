@@ -31,4 +31,11 @@ public class GuessNumberTest {
 		String result = guessNumber.validate("1234");
 		assertEquals(result, "4A0B");
 	}
+
+	@Test
+	public void shouldReturn1A0B() throws Exception {
+		GuessNumber guessNumber = new GuessNumber("1234");
+		String result = guessNumber.validate("7654");
+		assertEquals(result, "0A1B");
+	}
 }
