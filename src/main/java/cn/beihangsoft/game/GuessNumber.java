@@ -1,15 +1,17 @@
 package cn.beihangsoft.game;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Properties;
 
 /**
  * @author Zhiyong
  */
 public final class GuessNumber {
-	private final static int numberCount = 4;
-	private final static int tryCount = 6;
+	private static int numberCount = 4;
+	private static int tryCount = 6;
 	private String serverNumber;
 	private HashMap<String, Integer> hmServerNumber;
 
@@ -101,11 +103,37 @@ public final class GuessNumber {
 	}
 
 	public static void main(String[] args) {
+		InputStream is = GuessNumber.class.getResourceAsStream("/config.properties");
+		if (is != null) {
+			Properties properties = new Properties();
+			try {
+				properties.load(is);
+				numberCount = Integer.parseInt(properties.getProperty("numberCount"));
+				tryCount = Integer.parseInt(properties.getProperty("tryCount"));
+
+				if (numberCount < 3) {
+					numberCount = 3;
+				}
+				if (numberCount > 10) {
+					numberCount = 10;
+				}
+				if (tryCount < 3) {
+					tryCount = 3;
+				}
+				if (tryCount > 20) {
+					tryCount = 20;
+				}
+			}
+			catch (Exception ex) {
+				System.out.println(ex.getMessage());
+			}
+		}
+
 		int count = 0;
 		GuessNumber guessNumber = new GuessNumber();
 
 		while (count < tryCount) {
-			System.out.print("Guess the number: ");
+			System.out.format("Guess the number(%d digits, trying %d/%d): ", numberCount, count + 1, tryCount);
 
 			try {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
