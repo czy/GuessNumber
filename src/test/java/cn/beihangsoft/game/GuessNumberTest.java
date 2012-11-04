@@ -2,7 +2,7 @@ package cn.beihangsoft.game;
 
 import org.junit.Before;
 import org.junit.Test;
-import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.*;
 
 public class GuessNumberTest {
 	private GuessNumber guessNumber;
@@ -94,5 +94,28 @@ public class GuessNumberTest {
 	public void shouldReturn4A0B() throws Exception {
 		String result = guessNumber.validate("1234");
 		assertEquals(result, "4A0B");
+	}
+
+	@Test
+	public void checkNumberLength() {
+		GuessNumber gn = new GuessNumber();
+		String number = gn.getServerNumber();
+		assertEquals(number.length(), 4);
+	}
+
+	@Test
+	public void isValidNumber() {
+		GuessNumber gn = new GuessNumber();
+		String number = gn.getServerNumber();
+		for (int len = number.length(), i = 0; i < len; i++) {
+			assertTrue(number.charAt(i) >= '0');
+			assertTrue(number.charAt(i) <= '9');
+		}
+	}
+
+	@Test
+	public void hasRepeatedNumber() {
+		GuessNumber gn = new GuessNumber();
+		String number = gn.getServerNumber();
 	}
 }
